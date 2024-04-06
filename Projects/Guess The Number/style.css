@@ -1,0 +1,91 @@
+* {
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(6, 166, 158);
+    border-radius: 10px;
+}
+
+.description,.input-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    color: rgb(26, 31, 30);
+    padding: .5rem 2rem;
+    border-bottom: 1px solid black;
+}
+.description p{
+    font-size: 1.2rem;
+}
+.description h2{
+    font-size: 1.8rem;
+    margin-bottom: .5rem;
+}
+
+.input-form{
+    width: 100%;
+    gap: 0rem;
+}
+h2{
+    font-size: 1.8rem;
+}
+input{
+    width: 50%;
+    height: 2rem;
+    outline: none;
+    border: none;
+    margin-bottom: .5rem;
+    font-size: 1.2rem;
+    padding: .5rem;
+    border-radius: 4px;
+}
+
+#submit-btn{
+    width: 20%;
+    height: 2.2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    color: rgb(26, 31, 30);
+}
+
+.results{
+    margin: .5rem;
+    padding: .5rem;
+    width: 90%;
+    height: 150px;
+    font-size: 1.2rem;
+}
+
+#msg{
+    text-align: center;
+    margin-top: .5rem;
+}
+
+.start-btn{
+    margin-bottom: 1rem;
+}

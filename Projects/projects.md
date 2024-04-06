@@ -164,6 +164,12 @@ buttons.forEach((button) => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BMI index</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -195,11 +201,16 @@ buttons.forEach((button) => {
   </body>
 </html>
 
+
 ```
 
 # CSS code
 ```css
-*{
+* {
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -312,4 +323,333 @@ form.addEventListener('submit',function(e){
         }
     }
 })
+```
+
+## project-3
+
+# HTML code
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Your Local Time</h2>
+        <div class="clock"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+# CSS code
+```css
+* {
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width: 250px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.clock{
+    width: 160px;
+    height: 60px;
+    border-radius: 6px;
+    background-color: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 550;
+    color: #212121;
+}
+
+h2{
+    color: orange;
+    font-size: 1.6rem;
+}
+```
+
+# Javascript code
+```javascript
+const clock = document.querySelector(".clock");
+
+setInterval(function(){
+    let date = new Date();
+    clock.innerHTML = date.toLocaleTimeString();
+},1000)
+```
+
+## project-4
+# HTML code
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="description">
+            <h2>Number Guessing Game</h2>
+            <p>Try and guess a random number between 1 and 100</p>
+            <p>You have only 10 attempts to guess the right number</p>
+        </div>
+        <form class="input-form">
+            <h2>Guess a number</h2>
+            <input id="userInput" type="text" placeholder="Enter here">
+            <button type="submit" id="submit-btn">Submit</button>
+        </form>
+        <h2>-:Result:-</h2>
+        <div class="results">
+            <p>Previous Guesses: <span id="Previous-guesses"></span></p>
+            <p>Guesses Remaining: <span id="Remaining">10</span></p>
+            <h3 id="msg"></h3>
+        </div>
+        <div class="start-btn"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+# CSS code
+```css
+* {
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(6, 166, 158);
+    border-radius: 10px;
+}
+
+.description,.input-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    color: rgb(26, 31, 30);
+    padding: .5rem 2rem;
+    border-bottom: 1px solid black;
+}
+.description p{
+    font-size: 1.2rem;
+}
+.description h2{
+    font-size: 1.8rem;
+    margin-bottom: .5rem;
+}
+
+.input-form{
+    width: 100%;
+    gap: 0rem;
+}
+h2{
+    font-size: 1.8rem;
+}
+input{
+    width: 50%;
+    height: 2rem;
+    outline: none;
+    border: none;
+    margin-bottom: .5rem;
+    font-size: 1.2rem;
+    padding: .5rem;
+    border-radius: 4px;
+}
+
+#submit-btn{
+    width: 20%;
+    height: 2.2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    color: rgb(26, 31, 30);
+}
+
+.results{
+    margin: .5rem;
+    padding: .5rem;
+    width: 90%;
+    height: 150px;
+    font-size: 1.2rem;
+}
+
+#msg{
+    text-align: center;
+    margin-top: .5rem;
+}
+
+.start-btn{
+    margin-bottom: 1rem;
+}
+```
+
+# Javascript code
+```javascript
+const userInput = document.querySelector("#userInput");
+const submit = document.querySelector("#submit-btn");
+const previousGuess = document.querySelector("#Previous-guesses");
+const remaining = document.querySelector("#Remaining");
+const msg = document.querySelector("#msg");
+const startOver = document.querySelector(".results");
+const startBtn = document.querySelector(".start-btn");
+
+// Actual code
+const getRandomNumber = ()=>{
+    return parseInt(Math.random()*100+1);
+}
+let randomNumber = getRandomNumber();
+console.log(randomNumber);
+let preGuesses = [];
+let noOfGuesses = 10;
+let playGame = true;
+let button = document.createElement("button");
+if(playGame){
+    submit.addEventListener('click',function(e){
+        e.preventDefault();
+        const guess = parseInt(userInput.value);
+        validateGuess(guess)
+    })
+}
+const validateGuess = (guess)=>{
+    // number validation code
+    if(isNaN(guess)){
+        alert("Please Enter a valid number!");
+    }else if(guess<=0){
+        alert("Please Enter number greater than 0");
+    }else if(guess>100){
+        alert("Please Enter number less than 100");
+    }else{
+        preGuesses.push(guess);
+        if(noOfGuesses==1){
+            displayGuess(guess);
+            displayMassage(`Game Over. Random number was ${randomNumber}`);
+            endGame();
+        }else{
+            displayGuess(guess);
+            checkGuess(guess);
+        }
+    }
+}
+const checkGuess = (guess)=>{
+    // code for checking whether number is guessed or not
+    if(guess==randomNumber){
+        displayMassage(`You Guessed the number<br>Guessed number is ${randomNumber}`);
+        endGame();
+    }else if(guess>randomNumber){
+        displayMassage("Number is TOOO High");
+    }else{
+        displayMassage("Number is TOOO Low");
+    }
+}
+
+const displayMassage = (massage)=>{
+    msg.innerHTML = `${massage}`;
+}
+
+const displayGuess = (guess)=>{
+    // code to display the numbers and massage
+    userInput.value = '';
+    previousGuess.innerHTML += `${guess},`;
+    --noOfGuesses;
+    remaining.innerHTML = `${noOfGuesses}`;
+}
+
+const endGame = ()=>{
+    userInput.value = '';
+    userInput.setAttribute('disabled','');
+    button.innerHTML = "Start Again";
+    button.style.width = "10rem";
+    button.style.height = "2.2rem";
+    button.style.textAlign = "center";
+    button.style.fontSize = "1.2rem"; 
+    button.style.border = "none";
+    button.style.borderRadius = "4px";
+    button.id = "startNewGame";
+    playGame = false;
+    startBtn.appendChild(button);
+    newGame();
+}
+
+const newGame = ()=>{
+    const startNewGame = document.querySelector("#startNewGame");
+    startNewGame.addEventListener('click',function(e){
+        noOfGuesses = 10;
+        preGuesses = [];
+        previousGuess.innerHTML = '';
+        remaining.innerHTML = noOfGuesses;
+        msg.innerHTML = '';
+        playGame = true
+        userInput.removeAttribute('disabled');
+        randomNumber = getRandomNumber();
+        startBtn.removeChild(startNewGame);
+        userInput.removeAttribute('disabled');
+    })
+}
 ```
