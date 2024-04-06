@@ -751,3 +751,177 @@ const stopChangingBGColor = ()=>{
 startBtn.addEventListener('click',startChangingBGColor);
 stopBtn.addEventListener('click',stopChangingBGColor)
 ```
+
+## project-6
+
+# HTML code
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2 id="game-description">Tic Tac Toe Game</h2>
+        <div class="game">
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+        </div>
+        <h2 id="msg"></h2>
+        <button id="reset-game">Reset Game</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+# CSS code
+```css
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: #589197;
+    gap: .5rem;
+    border: 10px solid black;
+}
+#game-description{
+    font-size: 3rem;
+    margin-top: 1rem;
+    color: #d0e6ea;
+    text-align: center;
+}
+.game{
+    width: 500px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: .5rem;
+
+}
+.box{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: #9cb7bc;
+    font-size: 8rem;
+    color: #2b4f5b;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+h2{
+    font-size: 3rem;
+    color: #d0e6ea;
+    text-align: center;
+}
+
+#reset-game{
+    width: 7rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: .5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: black;
+    color: aliceblue;
+}
+```
+# Javascript code
+```javascript
+/*
+     Additional feature:-   
+                            newGame btn
+                            score table etc.
+*/
+const boxes = document.querySelectorAll(".box");
+const msg = document.querySelector("#msg");
+const gameContainer = document.querySelector(".container");
+const resetBtn = document.querySelector("#reset-game");
+const winningPattern = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
+let turnX = true;
+
+const disabledBtn = () => {
+  boxes.forEach((box) => {
+    box.disabled = true;
+  });
+};
+
+const enabledBtn = () => {
+  boxes.forEach((box) => {
+    box.disabled = false;
+    box.innerHTML = "";
+  });
+};
+
+const resetGame = () => {
+  enabledBtn();
+  msg.innerHTML = "";
+  turnX = true;
+};
+
+boxes.forEach((box) => {
+  box.addEventListener("click", function () {
+    if (turnX) {
+      box.innerHTML = "X";
+      turnX = false;
+    } else {
+      box.innerHTML = "O";
+      turnX = true;
+    }
+    box.disabled = true;
+    checkWinner();
+  });
+});
+
+const checkWinner = () => {
+  for (let pattern of winningPattern) {
+    let pos1 = boxes[pattern[0]].innerText;
+    let pos2 = boxes[pattern[1]].innerText;
+    let pos3 = boxes[pattern[2]].innerText;
+
+    if (pos1 != "" && pos2 != "" && pos3 != "") {
+      if(pos1 === pos2 && pos2 === pos3) {
+        msg.innerHTML = `Player ${pos1} won the game`;
+        disabledBtn();
+      }
+    }
+  }
+};
+resetBtn.addEventListener("click", resetGame);
+```
