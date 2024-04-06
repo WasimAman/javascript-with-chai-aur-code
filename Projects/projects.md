@@ -653,3 +653,101 @@ const newGame = ()=>{
     })
 }
 ```
+
+## project-5
+
+# HTML code
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Random Background</h2>
+      <div class="buttons">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+      </div>
+      <h2 id="msg"></h2>
+    </div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
+```
+
+# CSS code
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh ;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    outline: none;
+}
+h2{
+    font-size: 2.5rem;
+}
+
+button{
+    width: 6rem;
+    height: 2.5rem;
+    margin: .5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #212121;
+    color: #fff;
+    font-size: 1.2rem;
+}
+```
+
+# Javascript
+```javascript
+const getRandomColor = ()=>{
+    const hex = "0123456789ABCDEF";
+    let color = "#";
+    for(let i=0;i<6;i++){
+        color += hex[parseInt(Math.random()*15)];
+    }
+    return color;
+};
+
+const startBtn = document.getElementById("start");
+const stopBtn = document.getElementById("stop");
+
+let interval;
+const startChangingBGColor = ()=>{
+    const changeBGColor = ()=>{
+        document.body.style.backgroundColor = getRandomColor();
+    }
+    document.getElementById("msg").innerHTML = "Background Changing started...Click stop button to stop changing BGC"
+    interval = setInterval(changeBGColor,1000);
+}
+
+const stopChangingBGColor = ()=>{
+    clearInterval(interval);
+    document.getElementById("msg").innerHTML = "Background Changing stopped...Click start button to start changing BGC"
+    interval = null;
+}
+startBtn.addEventListener('click',startChangingBGColor);
+stopBtn.addEventListener('click',stopChangingBGColor)
+```
