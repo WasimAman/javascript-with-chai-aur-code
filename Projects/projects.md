@@ -153,3 +153,163 @@ buttons.forEach((button) => {
 });
 
 ```
+
+## project-2
+
+## HTML code
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI index</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>BMI Calculator</h2>
+      <form id="bmi-form">
+        <div class="first-field">
+          <label>Weight:</label>
+          <input id="weight" type="text" placeholder="Enter your weight in KG" />
+        </div>
+        <div class="second-field">
+          <label>Height:</label>
+          <input id="height" type="text" placeholder="Enter your height in CM" />
+        </div>
+        <button>Calculate</button>
+      </form>
+      <div class="result">
+        <h2>Result</h2>
+      <div class="box"></div>
+      </div>
+      <div class="guideline">
+        <h2>BMI Weight Guide</h2>
+        <p>under Weight = less than 18.6</p>
+        <p>Normal Weight = 18.6-24.9</p>
+        <p>Over Weight = Greater than 24.9</p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+```
+
+# CSS code
+```css
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width: 400px;
+    height: 600px;
+    background-color: #0f8f7a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 1rem;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+#bmi-form{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    width: 5.5rem;
+    height: 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #03585d;
+    color: whitesmoke;
+    margin-left: 2rem;
+    margin-top: .5rem;
+}
+.first-field,.second-field{
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+label{
+    font-size: 1.2rem;
+}
+input{
+    width: 60%;
+    height: 2rem;
+    border: none;
+    border-radius: 4px;
+    padding: 1rem;
+    outline: none;
+    font-size: 1rem;
+}
+button:hover{
+    background-color: #04474b;
+}
+.box{
+    width: 300px;
+    height: 150px;
+    border: 1px solid black;
+    padding: .5rem;
+}
+
+.guideline{
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+```
+
+
+# Javascript code
+```javascript
+const form = document.querySelector("form");
+
+form.addEventListener('submit',function(e){
+    e.preventDefault();
+    const weight = parseInt(document.querySelector("#weight").value);
+    const height = parseInt(document.querySelector("#height").value);
+    const result = document.querySelector(".box");
+    if(weight==0 || weight<0 || isNaN(weight)){
+        result.innerHTML = "<h3>Please give a valid weight...</h3>";
+    }else if(height==0 || height<0 || isNaN(height)){
+        result.innerHTML = "<h3>Please give a valid height...</h3>";
+    }else{
+        const bmi = (weight/((height*height)/10000)).toFixed(2);
+        if(bmi<18.6){
+            result.innerHTML = `<h3>Your BMI index is ${bmi}<br>you are under weight</h3>`
+        }else if(bmi>=18.6 && bmi<24.9){
+            result.innerHTML = `<h3>Your BMI index is ${bmi}<br>you are Normal weight</h3>`
+        }else{
+            result.innerHTML = `<h3>Your BMI index is ${bmi}<br>you are Over weight</h3>`
+        }
+    }
+})
+```
