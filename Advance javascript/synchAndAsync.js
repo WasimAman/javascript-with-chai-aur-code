@@ -14,45 +14,45 @@
 callback basically is a function which is passed in another function as an argument
 */
 
-function sum(a, b) {
-  console.log(a + b);
-}
-function calculator(a, b, sumCallback) {
-  // sumCallback(a,b);
-  console.log(sumCallback);
-}
+// function sum(a, b) {
+//   console.log(a + b);
+// }
+// function calculator(a, b, sumCallback) {
+//   // sumCallback(a,b);
+//   console.log(sumCallback);
+// }
 
-calculator(1, 3, sum);
+// calculator(1, 3, sum);
 
 // callback hell
 /*
     nesting of callback is known as callback hell
 */
 
-function getData(data, getNextData) {
-  setTimeout(() => {
-    console.log("Data ", data);
-    if (getNextData) {
-      getNextData();
-    }
-  }, 3000);
-}
+// function getData(data, getNextData) {
+//   setTimeout(() => {
+//     console.log("Data ", data);
+//     if (getNextData) {
+//       getNextData();
+//     }
+//   }, 3000);
+// }
 
 // This is callback hell we do this thing while fetching data from database 
-console.log("Getting date 1...");
-getData(1, () => {
-  console.log("Getting date 2...");
-  getData(2, () => {
-    console.log("Getting date 3...");
-    getData(3, () => {
-      console.log("Getting date 4...");
-      getData(4, () => {
-        console.log("Getting date 5...");
-        getData(5);
-      });
-    });
-  });
-});
+// console.log("Getting date 1...");
+// getData(1, () => {
+//   console.log("Getting date 2...");
+//   getData(2, () => {
+//     console.log("Getting date 3...");
+//     getData(3, () => {
+//       console.log("Getting date 4...");
+//       getData(4, () => {
+//         console.log("Getting date 5...");
+//         getData(5);
+//       });
+//     });
+//   });
+// });
 
 /*
     callback hell is very difficult to understand manage that's why to solve this problem promises concept came in javascript
@@ -74,9 +74,36 @@ getData(1, () => {
     if promise rejects then promise.catch() executes
     inside catch method we write those methods that will execute after promise is rejected.
 
-    how to create our own promises:- check promises repo
+    how to create promises:- check promises repo
 */
 
-// timestamp:- 52:58
-// next topic:- promise chain
+// solving callback hell problem with the help of promises
 
+
+const fetchData = (data)=>{
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      console.log(data);
+      resolve("success");
+    },5000)
+  })
+}
+
+// console.log("Fetching data1");
+// fetchData("data1").then((res)=>{
+//   console.log(res);
+//   console.log("Fetching data2");
+//   fetchData("data2").then((res)=>{
+//     console.log(res);
+//   })
+// })
+
+fetchData("data1")
+.then((res)=>{
+  return fetchData("data2")
+})
+.then((res)=>{
+  return fetchData("data3")
+}).then((res)=>{
+  return fetchData("data4")
+}).then();

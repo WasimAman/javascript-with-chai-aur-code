@@ -1,34 +1,33 @@
-const promiseOne = new Promise(function(resolve,reject){
-    // We can do all async task here
+// const promiseOne = new Promise(function(resolve,reject){
+//     // We can do all async task here
+//     setTimeout(function(){
+//         console.log("Async task is completed");
+//         resolve()
+//     },1000)
+// })
 
-    setTimeout(function(){
-        console.log("Async task is completed");
-        resolve()
-    },1000)
-})
+// promiseOne.then(function(){
+//     console.log("Promises is consumed");
+// })
 
-promiseOne.then(function(){
-    console.log("Promises is consumed");
-})
+// new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         console.log("Another way to do async task");
+//         resolve();  // to connect promises with then method
+//     }, 1000);
+// }).then(()=>{
+//     console.log("Another way to consumed promises");
+// })
 
-new Promise((resolve,reject)=>{
-    setTimeout(()=>{
-        console.log("Another way to do async task");
-        resolve();  // to connect promises with then method
-    }, 1000);
-}).then(()=>{
-    console.log("Another way to consumed promises");
-})
+// const promiseThree = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         resolve({username:"Wasim",password:"wasim$wasim"});
+//     },1000)
+// })
 
-const promiseThree = new Promise((resolve,reject)=>{
-    setTimeout(()=>{
-        resolve({username:"Wasim",password:"wasim$wasim"});
-    },1000)
-})
-
-promiseThree.then((user)=>{
-    console.log(user);
-})
+// promiseThree.then((user)=>{
+//     console.log(user);
+// })
 
 const promiseFour = new Promise((resolve, reject) => {
   setTimeout(() => {
